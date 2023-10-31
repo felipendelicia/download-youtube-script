@@ -1,4 +1,4 @@
-# Downlaod youtube script
+# Download youtube script
 
 Script con la finalidad de descargar playlist, audios, videos de Youtube.
 
