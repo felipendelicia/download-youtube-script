@@ -1,5 +1,9 @@
 from pytube import Playlist
 
+print("Download youtube script por felipo.")
+print("Repository: https://github.com/felipendelicia")
+print()
+
 youtubePlaylistUrl = input("Enter the youtube playlist URL: ")
 
 youtubePlaylist = Playlist(youtubePlaylistUrl)
