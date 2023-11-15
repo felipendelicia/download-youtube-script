@@ -1,67 +1,64 @@
 from pytube import Playlist, YouTube
 
-
-def getSongFileName(videoTitle: str):
+def getSongFileName(videoTitle: str)->str:
     song_name = ""
     for letter in videoTitle:
         if letter.isspace() or letter.isalnum():
             song_name += letter
     return song_name + ".mp3"
 
-
-def downloadSong(song):
+def downloadSong(url:str):
+    song = YouTube(url)
     name = getSongFileName(song.title)
-    song.streams.get_audio_only().download("./songs", filename=name)
-
-
-def downloadOneSong():
-    youtubeSongUrl = input("Enter youtube song URL: ")
-    youtubeSong = YouTube(youtubeSongUrl)
-
+    print("", "Starting download of:", song.title)
     try:
-        downloadSong(youtubeSong)
-    except Exception as e:
-        print(f"An error occurred while downloading", youtubeSong.title)
+        song.streams.get_audio_only().download("./songs", filename=name)
+    except:
+        print(f"Error downloading this song: {name}")
+    
+def downloadPlaylist(url:str):
+    playlist = Playlist(url)
 
-
-def downloadOnePlaylist():
-    youtubePlaylistUrl = input("Enter the youtube playlist URL: ")
-
-    youtubePlaylist = Playlist(youtubePlaylistUrl)
-
-    print("Downloading songs...")
-
-    for video in youtubePlaylist.videos:
-        print("", "Starting download of:", video.title)
-        try:
-            downloadSong(video)
-        except Exception as e:
-            print(f"An error occurred while downloading", video.title)
-
+    for video in playlist.videos:
+        downloadSong(video.watch_url)
 
 def checkResponse(response: str):
     response = response.lower()
     return response == "a" or response == "b"
 
+def initPrintText():
+    print("Download youtube script by felipendelicia.")
+    print("Repository: https://github.com/felipendelicia/download-youtube-script")
+    print()
 
-print("Download youtube script por felipo.")
-print("Repository: https://github.com/felipendelicia")
-print()
+def downloadAnswer()->bool:
+    print("You want download:")
+    print("A - single song")
+    print("B - complete playlist")
 
-print("You want download:")
-print("A - single song")
-print("B - complete playlist")
+    answer = False
+    response = ""
 
-correctAnswer = False
-respose = ""
+    while not answer:
+        response = input("Enter your choise (A/B): ")
+        answer = checkResponse(response)
 
-while not correctAnswer:
-    response = input("Enter your choise (A/B): ")
-    correctAnswer = checkResponse(response)
+    return response.lower()
 
-if response == "a":
-    downloadOneSong()
-else:
-    downloadOnePlaylist()
+def main():
+    initPrintText()
+    downloadTypeAnswer = downloadAnswer()
+    youtubeURL = input("Enter the youtube URL: ")
 
-input("Press any key to exit.")
+    print("Starting download...")
+
+    if downloadTypeAnswer == "a":
+        downloadSong(youtubeURL)
+    else:
+        downloadPlaylist(youtubeURL)
+
+    input("Press any key to exit...")
+    
+
+if __name__ == "__main__":
+    main()

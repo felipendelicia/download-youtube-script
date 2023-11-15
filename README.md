@@ -4,14 +4,21 @@ Script con la finalidad de descargar playlist, audios, videos de Youtube.
 
 ## Uso
 
-### 1: Descargar python
+### Windows
 
-Descargar python de la pagina oficial. [Python downloads](https://www.python.org/downloads/).
+* Descargar ultima release.
+* Abrir y utilizar.
 
-### 2: Descargar e instalar requerimientos
+### Linux
 
-Abrir script "install_requeriments.py".
+* Clonar codigo de la rama main.
+    
+`git clone https://github.com/felipendelicia/download-youtube-script`
 
-### 3: Utilizar aplicacion
+* Instalar requerimientos.
 
-Abrir script "index.py".
+`pip install -r requeriments.txt`
+
+* Ejecutar archivo index.
+
+`python3 index.py`
