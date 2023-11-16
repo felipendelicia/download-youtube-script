@@ -31,7 +31,6 @@ def initPrintText():
     print("Repository: https://github.com/felipendelicia/download-youtube-script")
     print()
 
-def downloadAnswer()->bool:
     print("You want download:")
     print("A - single song")
     print("B - complete playlist")
@@ -45,17 +44,19 @@ def downloadAnswer()->bool:
 
     return response.lower()
 
+def isPlaylist(url:str)->bool:
+    return "playlist" in url
+
 def main():
     initPrintText()
-    downloadTypeAnswer = downloadAnswer()
-    youtubeURL = input("Enter the youtube URL: ")
+    youtubeURL = input("Enter the playlist/song URL: ")
 
     print("Starting download...")
 
-    if downloadTypeAnswer == "a":
-        downloadSong(youtubeURL)
-    else:
+    if isPlaylist(youtubeURL):
         downloadPlaylist(youtubeURL)
+    else:
+        downloadSong(youtubeURL)
 
     input("Press any key to exit...")
     
