@@ -1,1 +1,12 @@
 /songs
+
+# PyInstaller
+build/
+dist/
+*.spec
+__pycache__/
+
+# ffmpeg que descarga el workflow de release
+ffmpeg.exe
+ffmpeg.zip
+ffmpeg-tmp/
