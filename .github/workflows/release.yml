@@ -3,6 +3,8 @@ name: Release
 on:
   push:
     tags:
+      # El repo venia usando tags sin prefijo (0.1.2); se aceptan las dos formas.
+      - "[0-9]+.[0-9]+.[0-9]+"
       - "v*"
   workflow_dispatch:
   # Youtube cambia seguido y el .exe congela el yt-dlp del dia del build.

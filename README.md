@@ -101,8 +101,8 @@ El workflow `.github/workflows/release.yml` construye el `.exe` y publica la
 release al pushear un tag:
 
 ```
-git tag v1.0.0
-git push origin v1.0.0
+git tag 1.0.0
+git push origin 1.0.0
 ```
 
 El build corre en `windows-latest`, empaqueta con PyInstaller (`icon.ico`
